@@ -8,8 +8,12 @@ def getTemps():
     temp_dictionary = {}
     for sensor in temperature_info:
         if (sensor.SensorType==u'Temperature'):
-            temp_dictionary[sensor.Name] = sensor
-    return temp_dictionary['GPU Core']
-
-
-print(getTemps())
+            temp_dictionary[sensor.Name] = {
+                'Name': sensor.Name,
+                'SensorType': sensor.SensorType,
+                'Min': sensor.Min,
+                'Max': sensor.Max,
+                'Value': sensor.Value,
+                'Identifier': sensor.Identifier
+            }
+    return temp_dictionary
